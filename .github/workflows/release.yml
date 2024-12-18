@@ -9,10 +9,31 @@ on:
         description: 'The environment to release to.'
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    name: Prepare
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Prepare
+        run: echo "preparing for ${{ inputs.environment }}"
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    needs:
+      - prepare
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build
+        run: echo "building for ${{ inputs.environment }}"
   deploy:
     runs-on: ubuntu-latest
+    name: Deploy
+    needs:
+      - build
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Deploy
-        run: Echo "deploying to ${{ inputs.environment }}"
+        run: echo "deploying to ${{ inputs.environment }}"

@@ -13,6 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
   deploy:
+    needs:
+      - prepare
     name: Deploy / Production
     uses: ./.github/workflows/release.yml
     with:
