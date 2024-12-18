@@ -10,6 +10,7 @@ on:
 
 jobs:
   prepare:
+    environment: production
     runs-on: ubuntu-latest
     name: Prepare
     steps:
@@ -18,6 +19,7 @@ jobs:
       - name: Prepare
         run: echo "preparing for ${{ inputs.environment }}"
   build:
+    environment: production
     runs-on: ubuntu-latest
     name: Build
     needs:
@@ -28,6 +30,7 @@ jobs:
       - name: Build
         run: echo "building for ${{ inputs.environment }}"
   deploy:
+    environment: production
     runs-on: ubuntu-latest
     name: Deploy
     needs:
